@@ -6,7 +6,7 @@ Use an enum to represent different statuses of a task (e.g., Pending, InProgress
 Use union types for a variable that can either be a string or number, explaining its purpose with comments.
  */
 
-enum statuses {
+enum statuse {
   pending = "pending",
   inProgress = "In-Progress",
   completed = "completed",
@@ -15,18 +15,44 @@ enum statuses {
 interface subtask {
   id: number | string;
   name: string;
-  status: statuses;
+  status: statuse;
 }
 
-let user1: subtask = {
+let users1: subtask = {
   id: 192913,
   name: "syed khizar",
-  status: statuses.completed,
+  status: statuse.completed,
 };
-let user2: subtask = {
+let users2: subtask = {
   id: "albert09",
   name: "albert",
-  status: statuses.inProgress,
+  status: statuse.inProgress,
 };
-console.log(user1.status);
-console.log(user2.status);
+// console.log(user1.status);
+// console.log(user2.status);
+
+//TASK NO 2 :
+/*Utility Types
+Create an object with:
+Optional properties using Partial.
+Read-only properties using Readonly.
+Demonstrate modifying an object before and after applying these utility types.
+ */
+
+interface bookdata {
+  readonly title: string;
+  pages: number;
+  reviews: number;
+}
+
+let book1: Partial<bookdata> = {
+  title: "doctor",
+  pages: 417,
+};
+
+function updateProperties(book: Partial<bookdata>, update: Partial<bookdata>) {
+  return { ...book, ...update };
+}
+
+book1 = updateProperties(book1, { pages: 315, reviews: 3.4 });
+console.log(book1);
